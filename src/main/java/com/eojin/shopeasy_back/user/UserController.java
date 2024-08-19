@@ -1,5 +1,6 @@
 package com.eojin.shopeasy_back.user;
 
+import com.eojin.shopeasy_back.common.ApiResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
