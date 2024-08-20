@@ -1,6 +1,6 @@
 package com.eojin.shopeasy_back.common.config;
 
-import com.eojin.shopeasy_back.common.Filter.CorsLoggingFilter;
+import com.eojin.shopeasy_back.common.filter.CorsLoggingFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.eojin.shopeasy_back.common.Filter;
+package com.eojin.shopeasy_back.common.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
