@@ -1,4 +1,4 @@
-package com.eojin.shopeasy_back.common;
+package com.eojin.shopeasy_back.common.dto;
 
 
 import lombok.Getter;
