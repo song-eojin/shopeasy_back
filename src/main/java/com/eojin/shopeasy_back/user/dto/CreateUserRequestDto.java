@@ -9,14 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Getter
 public class CreateUserRequestDto {
     private String username;
-    private String nickname;
+    private String realname;
     private String email;
     private String password;
 
 public User toEntity() {
         return User.builder()
                        .username(username)
-                       .nickname(nickname)
+                       .realname(realname)
                        .email(email)
                        .password(password)
                        .build();
