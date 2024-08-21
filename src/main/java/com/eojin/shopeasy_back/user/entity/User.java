@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,44 +17,48 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//UserDetails 를 상속받아 인증 객체로 사용
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //기본키 자동으로 1씩 증가
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //+1
     @Column(nullable = false)
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;
 
-    // 매핑 어노테이션을 생략하면 필드명을 사용해서 컬럼명으로 매핑한다.
     @Column(unique = true)
-    private String nickname;
+    private String realname;
 
     @Column(nullable = false, unique = true)
     private String email;
-    private String profile_url;
+
+    private String original_profile;
+    private String save_profile; //uuid
+    private int profile_size;
+    private int profile_delete_confirm;
 
     @Column(nullable = false)
     private String password;
+    private Date user_created_date;
 
     @Builder
-    public User(String username, String nickname, String email, String profile_url, String password) {
+    public User(String username, String realname, String email, String original_profile, String save_profile, String password) {
         this.username = username;
-        this.nickname = nickname;
+        this.realname = realname;
         this.email = email;
-        this.profile_url = profile_url;
+        this.original_profile = original_profile;
+        this.save_profile = save_profile;
         this.password = password;
     }
 
     public void updatePassword(String password) {
         this.password = password;
     }
-    public void updateNickname(String nickname) {
-    this.nickname = nickname;
+    public void updateRealname(String realname) {
+    this.realname = realname;
 }
-    public void updateProfileUrl(String profile_url) {
-    this.profile_url = profile_url;
+    public void updateOriginalProfile(String original_profile) {
+    this.original_profile = original_profile;
 }
 
     //권한 반환
@@ -61,15 +66,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("user"));
     }
-    //사용자 id 반환
-    @Override
-    public String getUsername() {
-        return username;
-    }
-    @Override
-    public String getPassword() {
-        return password;
-    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
