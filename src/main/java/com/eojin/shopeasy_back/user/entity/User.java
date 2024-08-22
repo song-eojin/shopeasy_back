@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //+1
     @Column(nullable = false)
@@ -54,8 +55,8 @@ public class User {
     }
     public void updateRealname(String realname) {
     this.realname = realname;
-}
+    }
     public void updateProfile(String profile) {
     this.profile = profile;
-}
+    }
 }
