@@ -17,7 +17,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //+1
     @Column(nullable = false)
@@ -32,8 +33,7 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String email;
 
-    private String original_profile;
-    private String save_profile; //uuid
+    private String profile; //uuid
     private int profile_size;
     private int profile_delete_confirm;
 
@@ -42,12 +42,11 @@ public class User implements UserDetails {
     private Date user_created_date;
 
     @Builder
-    public User(String username, String realname, String email, String original_profile, String save_profile, String password) {
+    public User(String username, String realname, String email, String profile, String save_profile, String password) {
         this.username = username;
         this.realname = realname;
         this.email = email;
-        this.original_profile = original_profile;
-        this.save_profile = save_profile;
+        this.profile = profile;
         this.password = password;
     }
 
@@ -56,35 +55,8 @@ public class User implements UserDetails {
     }
     public void updateRealname(String realname) {
     this.realname = realname;
-}
-    public void updateOriginalProfile(String original_profile) {
-    this.original_profile = original_profile;
-}
-
-    //권한 반환
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("user"));
     }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-        //return UserDetails.super.isAccountNonExpired();
-    }
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-        //return UserDetails.super.isAccountNonLocked();
-    }
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-        //return UserDetails.super.isCredentialsNonExpired();
-    }
-    @Override
-    public boolean isEnabled() {
-        return true;
-        //return UserDetails.super.isEnabled();
+    public void updateProfile(String profile) {
+    this.profile = profile;
     }
 }
